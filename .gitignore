@@ -1,0 +1,33 @@
+# ---------------------------------------------------------------
+# Kaynak belgeler — depoya GİRMEZ.
+# Kurul üyelerinin adlarını, kişisel e-posta içeren dosya meta
+# verisini ve yayınlanmamış tasarım taslaklarını barındırıyorlar.
+# ---------------------------------------------------------------
+*.pdf
+*.docx
+*.doc
+*.pptx
+*.xlsx
+
+# Kaynak ve teslim görselleri (site bunları kullanmıyor)
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.mp4
+*.webm
+
+# Sitenin kendi görselleri kalsın
+!assets/img/**
+
+# Yerel geliştirme artıkları
+_*.html
+
+# Araçlar
+.vercel/
+node_modules/
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/

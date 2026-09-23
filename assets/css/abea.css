@@ -1,0 +1,182 @@
+/* ==========================================================================
+   ABEA — temel stiller + açılış animasyonu katmanı
+   ========================================================================== */
+
+:root {
+  --abea-blue:        #28ADE5;   /* logodan ölçülen kurumsal mavi */
+  --abea-blue-deep:   #1B7FAB;   /* metin/buton için erişilebilir koyu varyant */
+  --abea-ink:         #0E2A38;
+  --abea-muted:       #5B7787;
+  --abea-bg:          #FFFFFF;
+  --abea-bg-soft:     #F3FAFD;
+  --abea-line:        #DCEBF3;
+
+  --abea-font: 'Barlow Semi Condensed';        /* kelime markası (logo yazısı) */
+  --abea-ui-font: 'Barlow', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --abea-max: 720px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+/* iOS Safari cihaz yatay çevrildiğinde metni kendiliğinden büyütmesin. */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--abea-bg);
+  color: var(--abea-ink);
+  font-family: var(--abea-ui-font);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --------------------------------------------------------------------------
+   Sayfanın açılış davranışı
+   (animasyon katmanının kendi stilleri ayrı dosyada: abea-intro.css)
+   -------------------------------------------------------------------------- */
+
+/* Açılış: JS logoyu kurup yazı tipini oturtana kadar sayfa görünmez kalır,
+   yoksa ilk karede logo ham/kırpılmış hâliyle bir an görünür.
+   Güvenlik ağı olarak <head>'deki zamanlayıcı bu sınıfı her hâlükârda kaldırır. */
+.abea-boot .abea-page { visibility: hidden; }
+
+/* Animasyon oynarken metinler gizli kalır; logo kutusu gizlenmez çünkü
+   açılış logosu tam oraya konar (bkz. flyTo). */
+.reveal {
+  transition: opacity .55s cubic-bezier(.4, 0, .2, 1),
+              transform .55s cubic-bezier(.4, 0, .2, 1);
+}
+
+body:not(.abea-ready) .reveal {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.hero__title.reveal { transition-delay: .06s; }
+.hero__lead.reveal  { transition-delay: .12s; }
+.hero__note.reveal  { transition-delay: .18s; }
+.site-footer.reveal { transition-delay: .24s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { transition: none; transform: none; }
+}
+
+/* --------------------------------------------------------------------------
+   "Yakında" sayfası
+   -------------------------------------------------------------------------- */
+
+.abea-page {
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  padding: 48px 16px 0;
+}
+
+.hero {
+  width: 100%;
+  max-width: var(--abea-max);
+  margin: 0 auto;
+  align-self: center;
+  text-align: center;
+  padding-block: 32px;
+}
+
+.hero__logo {
+  display: block;
+  width: min(420px, 78vw);
+  margin: 0 auto 40px;
+}
+
+.hero__logo svg { display: block; width: 100%; height: auto; }
+
+/* Durum satırı. Kutu/hap biçimi bilerek kullanılmadı; bunun yerine logonun
+   çizgi diline bağlanan iki ince kural arasında duran sessiz bir etiket. */
+.hero__badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 0 0 20px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .16em;   /* etiket uzun olduğu için .22em'den düşürüldü */
+  text-transform: uppercase;
+  color: var(--abea-blue-deep);
+}
+
+.hero__badge::before,
+.hero__badge::after {
+  content: "";
+  height: 1px;
+  width: 34px;
+  background: var(--abea-blue);
+  opacity: .55;
+}
+
+.hero__title {
+  font-family: var(--abea-font), var(--abea-ui-font);
+  font-size: clamp(38px, 9vw, 68px);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -.01em;
+  margin: 0 0 18px;
+}
+
+.hero__lead {
+  max-width: 50ch;
+  margin: 0 auto 26px;
+  color: var(--abea-ink);
+  font-size: clamp(17px, 2.4vw, 20px);
+}
+
+.hero__note {
+  max-width: 46ch;
+  margin: 0 auto 38px;
+  color: var(--abea-muted);
+  font-size: 16px;
+}
+
+/* Alt bilgi */
+.site-footer {
+  max-width: var(--abea-max);
+  margin: 0 auto;
+  padding: 28px 0 32px;
+  border-top: 1px solid var(--abea-line);
+  color: var(--abea-muted);
+  font-size: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Sayfadaki tek dokunulabilir öğe; 23px'lik metin yüksekliği parmak için
+   küçük kaldığından dolgu ile ~45px'e çıkarıldı. */
+.site-footer a {
+  display: inline-block;
+  padding: 11px 4px;
+  color: var(--abea-blue-deep);
+  text-decoration: none;
+}
+
+.site-footer a:hover,
+.site-footer a:focus-visible { text-decoration: underline; }
+
+@media (max-width: 520px) {
+  .abea-page { padding-top: 28px; }
+  .hero__logo { margin-bottom: 28px; }
+  .site-footer { justify-content: center; text-align: center; gap: 0 20px; }
+}
+
+/* Yatay tutulan telefonlar ve kısa pencereler: logo ekranı tek başına
+   doldurmasın, metin de görünsün. */
+@media (max-height: 520px) {
+  .abea-page { padding-top: 20px; }
+  .hero { padding-block: 16px; }
+  .hero__logo { width: min(300px, 62vw); margin-bottom: 20px; }
+}

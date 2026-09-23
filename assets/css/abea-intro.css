@@ -1,0 +1,30 @@
+/*!
+ * ABEA açılış animasyonu — katman stilleri
+ * ---------------------------------------
+ * Kendi kendine yeter: sayfanın geri kalanına, başka bir stil dosyasına ya da
+ * CSS değişkenlerine bağlı değildir (--abea-bg tanımlıysa kullanılır, değilse
+ * beyaza düşer). abea-logo.js + abea-intro.js ile birlikte üçlü olarak taşınır.
+ */
+
+.abea-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  background: var(--abea-bg, #fff);
+}
+
+/* Genişlik hem ekran genişliğine hem yüksekliğine göre sınırlanır.
+   Logonun en-boy oranı 458:332 olduğundan 85vh genişlik ≈ 62vh yükseklik demek;
+   bu olmadan yatay tutulan telefonlarda logo alttan kırpılıyordu. */
+.abea-intro__stage {
+  width: min(560px, 82vw, 85vh);
+}
+
+.abea-intro__logo {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;   /* dalga halkası kutunun dışına taşabilsin */
+}

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="2 5.5 241.5 315" fill="none" role="img" aria-label="Afet Bilinci Eğitim Araştırma Derneği">
+  <defs>
+    <clipPath id="l"><rect x="0" y="0" width="143.7" height="332"/></clipPath>
+    <clipPath id="r"><rect x="143.7" y="0" width="315" height="332"/></clipPath>
+  </defs>
+  <g clip-path="url(#l)" stroke="#28ADE5" stroke-width="6" fill="none">
+    <path d="M 143.70 168.60 A 34.00 34.00 0 1 0 143.70 225.40"/>
+    <path d="M 143.70 149.34 A 51.20 51.20 0 1 0 143.70 244.66"/>
+    <path d="M 143.70 131.21 A 68.40 68.40 0 1 0 143.70 262.79"/>
+    <path d="M 143.70 113.47 A 85.60 85.60 0 1 0 143.70 280.53"/>
+    <path d="M 143.70 95.92 A 102.80 102.80 0 1 0 143.70 298.08"/>
+    <path d="M 143.70 78.47 A 120.00 120.00 0 1 0 143.70 315.53"/>
+  </g>
+  <g clip-path="url(#r)" stroke="#28ADE5" stroke-width="13.5" fill="none">
+    <path d="M 143.70 214.34 A 25.50 25.50 0 0 0 150.50 197.00 L 150.50 5.50"/>
+    <path d="M 143.70 235.39 A 42.70 42.70 0 0 0 167.70 197.00 L 167.70 5.50"/>
+    <path d="M 143.70 253.91 A 59.90 59.90 0 0 0 184.90 197.00 L 184.90 5.50"/>
+    <path d="M 143.70 271.80 A 77.10 77.10 0 0 0 202.10 197.00 L 202.10 5.50"/>
+    <path d="M 143.70 289.43 A 94.30 94.30 0 0 0 219.30 197.00 L 219.30 5.50"/>
+    <path d="M 143.70 306.92 A 111.50 111.50 0 0 0 236.50 197.00 L 236.50 5.50"/>
+  </g>
+  <circle cx="125" cy="197" r="19" fill="#28ADE5"/>
+</svg>

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Afet Bilinci Eğitim Araştırma Derneği — Yakında</title>
+<meta name="description" content="Afet Bilinci Eğitim Araştırma Derneği, afet riskini azaltmak için bilimsel ve kanıta dayalı çalışmalar yürütür. Web sitemiz hazırlanıyor.">
+<meta name="theme-color" content="#28ADE5">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Afet Bilinci Eğitim Araştırma Derneği — Yakında">
+<meta property="og:description" content="Afete hazırlık bir yardım değil, haktır. Web sitemiz hazırlanıyor.">
+<meta property="og:locale" content="tr_TR">
+
+<link rel="icon" href="assets/img/abea-mark.svg" type="image/svg+xml">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="assets/css/abea-intro.css">
+<link rel="stylesheet" href="assets/css/abea.css">
+
+<script>
+  // JS çalışıyorsa sayfayı, logo kurulup yazı tipi oturana kadar gizle.
+  // <html> üzerinde tutulur ki modül betiğinin sırasından bağımsız olsun.
+  document.documentElement.classList.add('abea-boot');
+  // Güvenlik ağı: modül hiç yüklenmezse sayfa yine de açılsın.
+  setTimeout(() => document.documentElement.classList.remove('abea-boot'), 3000);
+</script>
+</head>
+
+<body>
+
+<main class="abea-page">
+
+  <section class="hero">
+    <!-- Logo buraya JS ile basılır; açılış animasyonu bitince tam bu kutuya oturur. -->
+    <div class="hero__logo" id="site-logo"></div>
+
+    <p class="hero__badge reveal">Web sitemiz yakında</p>
+
+    <h1 class="hero__title reveal">Afete hazırlık bir yardım değil, haktır.</h1>
+
+    <p class="hero__lead reveal">
+      Afet Bilinci Eğitim Araştırma Derneği; okul öncesinden iş dünyasına,
+      yerel yönetimlerden mahallelere kadar afet riskini azaltmak için
+      bilimsel ve kanıta dayalı çalışmalar yürütür.
+    </p>
+
+    <p class="hero__note reveal">
+      Çalışmalarımız, yayınlarımız ve gönüllülük programlarımız
+      kısa süre içinde burada olacak.
+    </p>
+
+  </section>
+
+  <footer class="site-footer reveal">
+    <span>© <span id="year">2026</span> Afet Bilinci Eğitim Araştırma Derneği</span>
+    <a href="mailto:afetbilinci.ead@gmail.com">afetbilinci.ead@gmail.com</a>
+  </footer>
+
+</main>
+
+<script type="module">
+  import { playIntro, buildLogo, fitWordmark } from './assets/js/abea-intro.js';
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // 1) Sayfanın kendi logosunu kur (animasyonun varış noktası)
+  const slot = document.getElementById('site-logo');
+  const hero = buildLogo();
+  slot.append(hero.svg);
+  await fitWordmark(hero.words);
+  document.documentElement.classList.remove('abea-boot');
+
+  // 2) Açılış animasyonunu oynat, bitince logoyu bu kutuya uçur
+  await playIntro({
+    flyTo: '#site-logo svg',
+    once: 'abea-intro-played',            // oturumda bir kez; test için bu satırı kaldır
+    onSettle: () => document.body.classList.add('abea-ready')
+  });
+</script>
+
+</body>
+</html>
